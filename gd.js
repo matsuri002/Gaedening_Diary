@@ -26,3 +26,19 @@ function goToFirstPage() {
     document.getElementById('before').style.display = 'block';
   }
   
+  function calculateDays() {
+    // 登録日の取得
+    var registrationDateInput = document.getElementById("registration-date");
+    var registrationDate = new Date(registrationDateInput.value);
+  
+    // 現在の日付の取得
+    var currentDate = new Date();
+  
+    // 日数の差を計算
+    var differenceInDays = Math.ceil((currentDate - registrationDate) / (1000 * 60 * 60 * 24));
+  
+    // 結果を表示
+    var resultElement = document.getElementById("result");
+    resultElement.textContent = "栽培から" + differenceInDays + "日目";
+  }
+  

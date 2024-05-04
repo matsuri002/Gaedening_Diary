@@ -36,8 +36,13 @@
                 <button onclick="goToSetupPage()" id="new" class="mt-1 mb-1 btn btn-info">新規追加</button>
                 <div id="first-1">
                     <h1>野菜を選択してください</h1>
+                    <label for="registration-date">栽培開始日:</label>
+                    <input type="date" id="registration-date">
+                    <button onclick="calculateDays()">日数を計算する</button>
+                    
                     <div><button type="button" class="mt-1 mb-1 w-50  btn btn-primary">小松菜</button></div>
                     <div><button onclick="goToTodayPage()" class="mt-1 mb-1 w-50 btn btn-primary">やさい</button></div>
+                    <div id="result"></div>
                 </div>
             </div>
             
@@ -46,9 +51,13 @@
                 <form>
                     <label for="name">名前：</label>
                     <input type="text" id="name" name="name"><br><br>
+
+                    <label for="registration-date">栽培開始日:</label>
+                    <input type="date" id="registration-date">
+                    <div id="result"></div>
                 
-                    <label for="email">栽培開始日：</label>
-                    <input type="email" id="email" name="email"><br><br>
+                    <!-- <label for="email">栽培開始日：</label>
+                    <input type="email" id="email" name="email"><br><br> -->
                 
                     <label for="message">メッセージ：</label><br>
                     <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
@@ -63,21 +72,25 @@
             </div>
             
             <div id="today" style="display:none;">
-                <h1>今日の記録</h1>
-                <h1>栽培〇日目</h1>
+                <h1>今日の記録</h1>            
+                <div id="result"></div>
                 <button type="button"  class="ms-1 list-group-horizontal btn btn-primary" onclick="goToBeforePage()">＜</button>
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNEmhAg8HfnF7NAFUZ86xSiO7aWLpN88Fa6SnRdSTlxPTxSPqUQ-4F31PRsRYUt3QYVBNJJQthf14mlsPHWyUJ02uGvfvFaSxrHLDwtJ4_7T1wHXMUJCLQJBZFbiSb9VXTW9AgAzEofrOQhIuESdh7y=w835-h627-s-no" class="ms-1 list-group-horizontal" width="758" height="340" alt="佐大農学部の写真">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNEmhAg8HfnF7NAFUZ86xSiO7aWLpN88Fa6SnRdSTlxPTxSPqUQ-4F31PRsRYUt3QYVBNJJQthf14mlsPHWyUJ02uGvfvFaSxrHLDwtJ4_7T1wHXMUJCLQJBZFbiSb9VXTW9AgAzEofrOQhIuESdh7y=w835-h627-s-no" class="ms-1 list-group-horizontal" width="758" height="340">
                 <div id="memo-set">
                     <div><label for="memo">メモ</label><br></div>
                     <div><textarea id="memo" name="memo" rows="4" cols="50"></textarea><br><br></div>
                 </div>
                 <div><button type="button"  class="ms-1 btn btn-primary" onclick="goToFirstPage()">項目選択</button></div>
+                <label for="registration-date">栽培開始日:</label>
+                <input type="date" id="registration-date">
+                <button onclick="calculateDays()">日数を計算する</button>
+                <div id="result"></div>
             </div>
 
             <div id="before" style="display:none;">
                 <h1>〇/〇の記録</h1>
                 <button type="button"  class="ms-1 list-group-horizontal btn btn-primary" onclick="goToBeforePage()">＜</button>
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczPk5gOzEc96-WiV5hFOSdWLgnZ2XRHzGpkA1sQQgMLlDwFxHNPeEJiskO-7J8BZZMTnEB91EZapOLFjuxL0yglIvYH3Totx74YYLEUHRSHQg2fZG_Edt2IC-r3lU2kmzyoxrvvRXYOtUXLZtWtb5gVm=w1196-h897-s-no" class="ms-1 list-group-horizontal" width="758" height="340" alt="佐大農学部の写真">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPk5gOzEc96-WiV5hFOSdWLgnZ2XRHzGpkA1sQQgMLlDwFxHNPeEJiskO-7J8BZZMTnEB91EZapOLFjuxL0yglIvYH3Totx74YYLEUHRSHQg2fZG_Edt2IC-r3lU2kmzyoxrvvRXYOtUXLZtWtb5gVm=w1196-h897-s-no" class="ms-1 list-group-horizontal" width="758" height="340">
                 <button type="button"  class="ms-1 list-group-horizontal btn btn-primary" onclick="goToTodayPage()">＞</button>
                 <div id="memo-set">
                     <div><label for="memo">メモ</label><br></div>
