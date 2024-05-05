@@ -76,3 +76,38 @@ function goToFirstPage() {
         alert("An error occurred. Please try again.");
     });
 });
+
+
+//↓httpリクエストでかく（あくしおす）
+// new_postで新規つくる（ポストリクエスト）js
+// get リクエストで野菜の名前全部だす js
+// 野菜ごとにid idごとに情報を引っ張る（getリクエスト）　js
+
+// 名前を送信する関数
+function sendName() {
+  const nameInput = document.getElementById('nameInput').value;
+
+  // axiosを使用してHTTP POSTリクエストを送信
+  axios.post('http://your_fastapi_endpoint/save_name', {
+      name: nameInput
+  })
+  .then(function (response) {
+      console.log('Response:', response.data); // レスポンスをコンソールに出力
+  })
+  .catch(function (error) {
+      console.error('Error:', error); // エラーが発生した場合はエラーをコンソールに出力
+  });
+}
+
+// ボタンがクリックされたときにsendName関数を実行
+document.getElementById('submitButton').addEventListener('click', sendName);
+
+
+// こんな感じでかく。postもどういう風に書くかgptに聞く
+axios.get('http://example.com/api/data')
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.error('There was an error!', error);
+  });
