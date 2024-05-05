@@ -26,6 +26,13 @@
 </head>
 
 <body>
+    <h1>Vegetable Entry Form</h1>
+    <form id="vegetableForm">
+        <label for="vegetableName">Vegetable Name:</label>
+        <input type="text" id="vegetableName" name="vegetableName" required>
+        <button type="submit">Submit</button>
+    </form>
+    
     <div class="名前つける">
     
         <div class="alert alert-primary" role="alert">
@@ -36,9 +43,9 @@
                 <button onclick="goToSetupPage()" id="new" class="mt-1 mb-1 btn btn-info">新規追加</button>
                 <div id="first-1">
                     <h1>野菜を選択してください</h1>
-                    <label for="registration-date">栽培開始日:</label>
-                    <input type="date" id="registration-date">
-                    <button onclick="calculateDays()">日数を計算する</button>
+                    <!-- <label for="start_date">栽培開始日:</label>
+                    <input type="date" id="start_date">
+                    <button onclick="calculateDays()">日数を計算する</button> -->
                     
                     <div><button type="button" class="mt-1 mb-1 w-50  btn btn-primary">小松菜</button></div>
                     <div><button onclick="goToTodayPage()" class="mt-1 mb-1 w-50 btn btn-primary">やさい</button></div>
@@ -52,8 +59,8 @@
                     <label for="name">名前：</label>
                     <input type="text" id="name" name="name"><br><br>
 
-                    <label for="registration-date">栽培開始日:</label>
-                    <input type="date" id="registration-date">
+                    <label for="start_date">栽培開始日:</label>
+                    <input type="date" id="start_date">
                     <div id="result"></div>
                 
                     <!-- <label for="email">栽培開始日：</label>
@@ -81,10 +88,10 @@
                     <div><textarea id="memo" name="memo" rows="4" cols="50"></textarea><br><br></div>
                 </div>
                 <div><button type="button"  class="ms-1 btn btn-primary" onclick="goToFirstPage()">項目選択</button></div>
-                <label for="registration-date">栽培開始日:</label>
-                <input type="date" id="registration-date">
+                <!-- <label for="start_date">栽培開始日:</label>
+                <input type="date" id="start_date">
                 <button onclick="calculateDays()">日数を計算する</button>
-                <div id="result"></div>
+                <div id="result"></div> -->
             </div>
 
             <div id="before" style="display:none;">
