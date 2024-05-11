@@ -1,51 +1,51 @@
-import os
-from dotenv import load_dotenv
-from fastapi import FastAPI
-import mysql.connector
+# import os
+# from dotenv import load_dotenv
+# from fastapi import FastAPI
+# import mysql.connector
 
-from pydantic import BaseModel
+# from pydantic import BaseModel
 
-app = FastAPI()
+# app = FastAPI()
 
-# 環境変数読み込み
-load_dotenv()
+# # 環境変数読み込み
+# load_dotenv()
 
-# データベース接続情報の取得
-DB_HOST = os.getenv("DB_HOST")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_DATABASE = os.getenv("DB_DATABASE")
+# # データベース接続情報の取得
+# DB_HOST = os.getenv("DB_HOST")
+# DB_USER = os.getenv("DB_USER")
+# DB_PASSWORD = os.getenv("DB_PASSWORD")
+# DB_DATABASE = os.getenv("DB_DATABASE")
 
-# MySQLへの接続
-conn = mysql.connector.connect(
-    host=DB_HOST,
-    user=DB_USER,
-    password=DB_PASSWORD,
-    database=DB_DATABASE
-)
+# # MySQLへの接続
+# conn = mysql.connector.connect(
+#     host=DB_HOST,
+#     user=DB_USER,
+#     password=DB_PASSWORD,
+#     database=DB_DATABASE
+# )
 
-# リクエストボディのモデル
-class NameInput(BaseModel):
-    name: str
+# # リクエストボディのモデル
+# class NameInput(BaseModel):
+#     name: str
 
-# 名前を保存するエンドポイント
-@app.post("/save_name")
-async def save_name(name_input: NameInput):
-    name = name_input.name
-    try:
-        # カーソルの作成
-        cursor = conn.cursor()
+# # 名前を保存するエンドポイント
+# @app.post("/save_name")
+# async def save_name(name_input: NameInput):
+#     name = name_input.name
+#     try:
+#         # カーソルの作成
+#         cursor = conn.cursor()
 
-        # 名前をデータベースに挿入
-        cursor.execute("INSERT INTO your_table (name) VALUES (%s)", (name,))
-        conn.commit()
+#         # 名前をデータベースに挿入
+#         cursor.execute("INSERT INTO your_table (name) VALUES (%s)", (name,))
+#         conn.commit()
 
-        # 接続を閉じる
-        cursor.close()
+#         # 接続を閉じる
+#         cursor.close()
 
-        return {"message": f"Name '{name}' saved successfully"}
-    except Exception as e:
-        return {"error": str(e)}
+#         return {"message": f"Name '{name}' saved successfully"}
+#     except Exception as e:
+#         return {"error": str(e)}
 
 
 
