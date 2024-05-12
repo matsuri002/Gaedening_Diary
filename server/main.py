@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from table import Vegetable
+from server.table import Vegetable
 from db import session
 
 app = FastAPI()
