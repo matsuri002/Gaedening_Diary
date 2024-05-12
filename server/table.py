@@ -1,7 +1,7 @@
 ## テーブル定義をするファイル
 from sqlalchemy import Column, Integer, String, DateTime, func
 
-from db import Base,engine
+from server.db import Base,engine
 
 class Vegetable(Base):
     __tablename__ = "vegetable"
