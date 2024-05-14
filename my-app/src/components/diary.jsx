@@ -1,7 +1,8 @@
 // TodayPage.jsx
 import React from 'react';
 
-function TodayPage() {
+// const Diary = () => (
+function Diary() {
   return (
     <div id="today" style={{ display: 'none' }}>
       <h1>今日の記録</h1>            
@@ -17,4 +18,4 @@ function TodayPage() {
   );
 }
 
-export default TodayPage;
+export default Diary;
