@@ -1,13 +1,11 @@
 // new_entry.jsx
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-// const NewEntry = () => (
-function NewEntry() {
-  return (
-    <div id="setup" style={{ display: 'none' }}>
+const NewEntry = () => (
+    <div id="setup">
       <h1>新規追加</h1>
-      <form>
+      <form> */
         <label htmlFor="name">名前：</label>
         <input type="text" id="name" name="name" /><br /><br />
         <label htmlFor="start_date">栽培開始日:</label>
@@ -15,13 +13,12 @@ function NewEntry() {
         <div id="result"></div>
         <label htmlFor="message">メッセージ：</label><br />
         <textarea id="message" name="message" rows="4" cols="50"></textarea><br /><br />
-        {/* <Link to="/"><button>戻る</button></Link> */}
-        {/* <input type="submit" className="ms-1 btn btn-primary" value="完了" />
-        <button type="button" className="ms-1 btn btn-primary" onClick={goToFirstPage}>戻る</button> */}
+        <Link to="/"><button>戻る</button></Link>
+        <input type="submit" className="ms-1 btn btn-primary" value="完了" />
       </form>
     </div>
   );
-}
+
 // )
 
 // document.getElementById("vegetableForm").addEventListener("submit", function(event) {
