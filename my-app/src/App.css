@@ -4,18 +4,67 @@
   font-size: 18px;
 }
 
+/* ヘッダー */
 header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  text-align: left;
+  padding: 5px 10px; 
+  font-size: 24px;
   background-color: rgb(205, 228, 249);
   color: black;
-  position: fixed;
+  line-height: 0.5; 
+}
+header .logo h3{
+  font-size: 25px;
+  margin: 1;
+}
+
+/* 新規追加ボタン */
+body .new-botton {
+  position: absolute;
+  top: 70px; 
+  right: 40px;
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20%;
+  background-color: #f8ee97;
+  color: rgb(234, 176, 82);
+  cursor: pointer;
+  /* display: flex; */
+  /* align-items: center; */
+  justify-content: center;
+}
+body .new-botton:hover {
+  background-color: #eaca8e;
+}
+
+/* 野菜を選択してください */
+body .selection h1{
+  display: flex; 
+  justify-content: space-around;
+  align-items: center;
+  color: rgb(4, 4, 4);
   width: 100%;
   z-index: 10;
 }
 
-header .logo h3{
-  font-size: 25px;
+/* 項目ボタン */
+body .button-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
+body .botton{
+  margin: 10px 0;
+  padding: 10px 90px;
+  font-size: 16px;
+  border: none;
+  background-color: #d2f0dc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .botton:hover{
+  background-color: #f0f0f0;
+}

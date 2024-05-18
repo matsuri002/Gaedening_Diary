@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NewEntry = () => (
     <div id="setup">
       <h1>新規追加</h1>
-      <form> */
+      <form> 
         <label htmlFor="name">名前：</label>
         <input type="text" id="name" name="name" /><br /><br />
         <label htmlFor="start_date">栽培開始日:</label>

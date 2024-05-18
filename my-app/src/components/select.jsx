@@ -3,15 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Select = () =>(
-    <div id="first">
-      {/* <button onClick={goToSetupPage} id="new" className="mt-1 mb-1 btn btn-info">新規追加</button> */}
-      <div id="first-1">
+  <body>
+    <Link to="/NewEntry"><button className="new-botton">新規<br />追加</button></Link>
+    <div className="selection">
         <h1>野菜を選択してください</h1>
-        {/* <div><button type="button" className="mt-1 mb-1 w-50 btn btn-primary">小松菜</button></div>
-        <div><button onClick={goToTodayPage} className="mt-1 mb-1 w-50 btn btn-primary">やさい</button></div> */}
-        <Link to="/NewEntry"><button>新規追加</button></Link>
-      </div>
+        <div className="button-container">
+          <Link to="/Diary"><button className="botton">小松菜</button></Link>
+          <Link to="/Diary"><button className="botton">トマト</button></Link>
+        </div>
     </div>
+  </body>
   );
 
 
