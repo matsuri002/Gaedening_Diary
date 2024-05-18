@@ -18,6 +18,7 @@ header .logo h3{
   margin: 1;
 }
 
+/* selection.jsx */
 /* 新規追加ボタン */
 body .new-botton {
   position: absolute;
@@ -67,4 +68,32 @@ body .botton{
 }
 body .botton:hover{
   background-color: #f0f0f0;
+}
+
+/* new_entry.jsx */
+/* 新規追加フォーム */
+body .form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .form-button-container{
+  align-items: center;
+  gap: 100px;
+}
+body .form-botton{
+  margin: 1px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #f8ee97;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .form-botton:hover{
+  background-color: #eaca8e;
+}
+body .form-botton {
+  justify-content: center;
+  margin-right: 100px;
 }
