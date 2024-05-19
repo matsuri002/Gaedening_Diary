@@ -1,0 +1,185 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  font-size: 18px;
+}
+
+/* ヘッダー */
+header {
+  text-align: left;
+  padding: 5px 10px; 
+  font-size: 24px;
+  background-color: rgb(205, 228, 249);
+  color: black;
+  line-height: 0.5; 
+}
+header .logo h3{
+  font-size: 25px;
+  margin: 1;
+}
+
+/* selection.jsx */
+/* 新規追加ボタン */
+body .new-botton {
+  position: absolute;
+  top: 70px; 
+  right: 40px;
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20%;
+  background-color: #f8ee97;
+  color: rgb(234, 176, 82);
+  cursor: pointer;
+  /* display: flex; */
+  /* align-items: center; */
+  justify-content: center;
+}
+body .new-botton:hover {
+  background-color: #eaca8e;
+}
+
+/* 野菜を選択してください */
+body .selection h1{
+  display: flex; 
+  justify-content: space-around;
+  align-items: center;
+  color: rgb(4, 4, 4);
+  width: 100%;
+  z-index: 10;
+}
+
+/* 項目ボタン */
+body .button-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .botton{
+  margin: 10px 0;
+  padding: 10px 90px;
+  font-size: 16px;
+  border: none;
+  background-color: #d2f0dc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .botton:hover{
+  background-color: #f0f0f0;
+}
+
+/* new_entry.jsx */
+/* 新規追加フォーム */
+body .form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .form-button-container{
+  align-items: center;
+  gap: 100px;
+}
+body .form-botton{
+  margin: 1px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #f8ee97;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .form-botton:hover{
+  background-color: #eaca8e;
+}
+body .form-botton {
+  justify-content: center;
+  margin-right: 100px;
+}
+
+/* diary.jsx */
+#today {
+  text-align: center;
+}
+
+#today img {
+  margin: 0 auto;
+}
+
+/* #today button {
+  margin-top: 10px;
+} */
+
+/* #memo-set {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+
+/* ＜ボタン */
+body .before-botton{
+  position: absolute;
+  top: 320px; 
+  left: 150px;
+  margin: 10px 10;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: #d2f0dc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .before-botton:hover{
+  background-color: #f0f0f0;
+}
+/* ＞ボタン */
+body .after-botton{
+  position: absolute;
+  top: 320px; 
+  right: 150px;
+  margin: 10px 10;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: #d2f0dc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .after-botton:hover{
+  background-color: #f0f0f0;
+}
+
+.dairy-container {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+}
+/* 今日の記録の完了ボタン */
+body .diary-back-botton{
+  margin: 10px 0;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: #f8ee97;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .diary-back-botton:hover{
+  background-color: #eaca8e;
+}
+/* 今日の記録の完了ボタン */
+body .diary-botton{
+  margin: 10px 0;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: #f8ee97;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .diary-botton:hover{
+  background-color: #eaca8e;
+}
+
