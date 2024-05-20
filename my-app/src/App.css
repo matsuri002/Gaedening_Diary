@@ -17,6 +17,42 @@ header .logo h3{
   font-size: 25px;
   margin: 1;
 }
+/* body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: left;
+  padding: 10px;
+  font-size: 24px;
+  background-color: rgb(205, 228, 249);
+  color: black;
+}
+
+header .logo h3 {
+  font-size: 20px;
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #d2f0dc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #b0e0d0;
+}
+
 
 /* selection.jsx */
 /* 新規追加ボタン */
@@ -182,4 +218,6 @@ body .diary-botton{
 body .diary-botton:hover{
   background-color: #eaca8e;
 }
+
+
 
