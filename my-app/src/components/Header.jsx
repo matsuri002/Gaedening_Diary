@@ -1,21 +1,8 @@
 // Header.jsx
-// import React from 'react'
-
-
-// const Header = () => {
-//   return (
-//     <header>
-//         <div className="logo">
-//             <h3>明日の天気</h3>
-//         </div>
-//     </header>
-//   );
-// };
-
-// export default Header
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+
 
 const Header = () => {
   const [weather, setWeather] = useState('');
@@ -23,8 +10,8 @@ const Header = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/weather');
-        setWeather(`明日の天気: ${response.data.tomorrow_weather}, 気温: ${response.data.temperature}℃`);
+        const response = await axios.get('http://127.0.0.1:8000/weather');
+        setWeather(`現在の天気: ${response.data.weather}, 気温: ${response.data.temperature}℃`);
       } catch (error) {
         console.error("Error fetching the weather data", error);
       }
