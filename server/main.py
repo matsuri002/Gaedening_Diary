@@ -39,16 +39,14 @@ def add_vegetable(diary: str , fiscal_year: str):
     session.commit()
     return {}
 
+
 @app.get("/weather")
 async def get_weather():
-    city = "Kurume,JP"
-    url = f"http://api.openweathermap.org/data/2.5/weather?q=Fukuoka,JP&appid=e23e150d4f46a3a9307fecc50e40d84b
-&lang=ja&units=metric"
-    # url = f"{BASE_URL}?q={city}&cnt=2&units=metric&appid={API_KEY}"
+    url = "http://api.openweathermap.org/data/2.5/weather?q=Fukuoka,JP&appid=e23e150d4f46a3a9307fecc50e40d84b&lang=ja&units=metric"
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
         data = response.json()
         return {
-            "tomorrow_weather": data["list"][1]["weather"][0]["description"],
-            "temperature": data["list"][1]["main"]["temp"]
+            "weather": data["weather"][0]["description"],
+            "temperature": data["main"]["temp"]
         }
