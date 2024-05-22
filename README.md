@@ -12,4 +12,7 @@ feature1,test1,test-branchはいらない
 `pip install mysql-connector-python`  
 `pip install --upgrade sqlalchemy`  
 `python.exe -m pip install --upgrade pip`  
+`pip install pytz`
+
+
  
