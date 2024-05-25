@@ -18,11 +18,37 @@ header .logo h3{
   margin: 1;
 }
 
+header .logo p{
+  font-size: 20px;
+  margin: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #d2f0dc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #b0e0d0;
+}
+
+
 /* selection.jsx */
 /* 新規追加ボタン */
 body .new-botton {
   position: absolute;
-  top: 70px; 
+  top: 100px; 
   right: 40px;
   margin: 10px 0;
   padding: 10px 20px;
@@ -117,6 +143,10 @@ body .form-botton {
   align-items: center;
 } */
 
+body .todays h1{
+  font-size: 28px;
+  margin: 1;
+}
 
 /* ＜ボタン */
 body .before-botton{
@@ -182,4 +212,6 @@ body .diary-botton{
 body .diary-botton:hover{
   background-color: #eaca8e;
 }
+
+
 
