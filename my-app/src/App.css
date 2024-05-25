@@ -17,21 +17,11 @@ header .logo h3{
   font-size: 25px;
   margin: 1;
 }
-/* body {
-  font-family: Arial, sans-serif;
-}
 
-header {
-  text-align: left;
-  padding: 10px;
-  font-size: 24px;
-  background-color: rgb(205, 228, 249);
-  color: black;
-}
-
-header .logo h3 {
+header .logo p{
   font-size: 20px;
-} */
+  margin: 1;
+}
 
 .container {
   display: flex;
@@ -58,7 +48,7 @@ header .logo h3 {
 /* 新規追加ボタン */
 body .new-botton {
   position: absolute;
-  top: 70px; 
+  top: 100px; 
   right: 40px;
   margin: 10px 0;
   padding: 10px 20px;
@@ -153,6 +143,10 @@ body .form-botton {
   align-items: center;
 } */
 
+body .todays h1{
+  font-size: 28px;
+  margin: 1;
+}
 
 /* ＜ボタン */
 body .before-botton{

@@ -22,9 +22,11 @@ const Header = () => {
     <header>
       <div className="logo">
         <h3>明日の天気</h3>
-        <p>朝：{weather.morning?.weather}、降水確率：{weather.morning?.pop * 100}%</p>
-        <p>昼：{weather.afternoon?.weather}、降水確率：{weather.afternoon?.pop * 100}%</p>
-        <p>夜：{weather.night?.weather}、降水確率：{weather.night?.pop * 100}%</p>
+        <p>
+          朝：{weather.morning?.weather}　降水確率：{weather.morning?.pop * 100}%　　
+          昼：{weather.afternoon?.weather}　降水確率：{weather.afternoon?.pop * 100}%　　
+          夜：{weather.night?.weather}　降水確率：{weather.night?.pop * 100}%
+        </p>
       </div>
     </header>
   );
