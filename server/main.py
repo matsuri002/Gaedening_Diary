@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from fastapi import HTTPException
+# main.py
+from fastapi import FastAPI,HTTPException
 
 from starlette.middleware.cors import CORSMiddleware
 import httpx
