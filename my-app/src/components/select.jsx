@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const currentDate = getCurrentDate();
+
 const Select = () => {
   const [vegetables, setVegetables] = useState([]);
   const [error, setError] = useState(null);
@@ -29,7 +31,7 @@ const Select = () => {
         <div className="button-container">
           {error && <p>{error}</p>}
           {vegetables.map((vegetable) => (
-            <Link key={vegetable.id} to={`/Diary/${vegetable.id}`}>
+             <Link key={vegetable.id} to={`/Diary/${vegetable.id}/${currentDate}`}>
               <button className="botton">{vegetable.name}</button>
             </Link>
           ))}
@@ -40,4 +42,13 @@ const Select = () => {
 };
 
 export default Select;
+
+// 今日の日付を取得するヘルパー関数
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 
