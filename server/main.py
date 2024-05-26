@@ -35,14 +35,6 @@ async def root():
 
 ## この下にエンドポイント追加
 
-# @app.get("/vegetables")
-# async def show_vesitables():
-#     vegetables = session.query(Vegetable).all()
-#     for vegetable in vegetables:
-#         print ("id=",vegetable.id,"diary",vegetable.diary,"fiscal_year",vegetable.fiscal_year)
-#     return {"vegetables": vegetables}
-
-
 # Vegetableモデル用のPydanticスキーマ
 class VegetableCreate(BaseModel):
     name: str
@@ -139,20 +131,6 @@ def add_vegetable(vegetable: VegetableCreate):
 def get_vegetables():
     vegetables = session.query(Vegetable).all()
     return vegetables
-
-# @app.get("/vegetables")
-# async def show_vesitables():
-#     vegetables = session.query(Vegetable).all()
-#     for vegetable in vegetables:
-#         print ("id=",vegetable.id,"name",vegetable.name,"cultivation_start_date",vegetable.cultivation_start_date,"memo",vegetable.memo,"fiscal_year",vegetable.fiscal_year)
-#     return {"vegetables": vegetables}
-
-# @app.post("/add_vegetable")
-# def add_vegetable(diary: str , fiscal_year: str):
-#     db = Vegetable(diary=diary, fiscal_year=fiscal_year)
-#     session.add(db)
-#     session.commit()
-#     return {}
 
 @app.get("/weather")
 async def get_weather():
