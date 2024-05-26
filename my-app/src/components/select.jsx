@@ -1,19 +1,43 @@
 // select.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Select = () =>(
-  <body>
-    <Link to="/NewEntry"><button className="new-botton">新規<br />追加</button></Link>
-    <div className="selection">
+const Select = () => {
+  const [vegetables, setVegetables] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchVegetables = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/vegetables');
+        setVegetables(response.data);
+      } catch (error) {
+        setError('Failed to fetch vegetables.');
+        console.error('Error fetching vegetables:', error);
+      }
+    };
+
+    fetchVegetables();
+  }, []);
+
+  return (
+    <div>
+      <Link to="/NewEntry"><button className="new-botton">新規<br />追加</button></Link>
+      <div className="selection">
         <h1>野菜を選択してください</h1>
         <div className="button-container">
-          <Link to="/Diary"><button className="botton">小松菜</button></Link>
-          <Link to="/Diary"><button className="botton">トマト</button></Link>
+          {error && <p>{error}</p>}
+          {vegetables.map((vegetable) => (
+            <Link key={vegetable.id} to={`/Diary/${vegetable.id}`}>
+              <button className="botton">{vegetable.name}</button>
+            </Link>
+          ))}
         </div>
+      </div>
     </div>
-  </body>
   );
-
+};
 
 export default Select;
+

@@ -1,12 +1,19 @@
-from fastapi import FastAPI
+# main.py
+from fastapi import FastAPI,HTTPException
+
 from starlette.middleware.cors import CORSMiddleware
 import httpx
 
 from datetime import datetime, timedelta
 import pytz
 
-from table import Vegetable
-from db import session
+from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from typing import List
+
+from table import Vegetable, Date
+from db import session, engine
+
 
 app = FastAPI()
 
@@ -28,19 +35,102 @@ async def root():
 
 ## この下にエンドポイント追加
 
-@app.get("/vegetables")
-async def show_vesitables():
-    vegetables = session.query(Vegetable).all()
-    for vegetable in vegetables:
-        print ("id=",vegetable.id,"diary",vegetable.diary,"fiscal_year",vegetable.fiscal_year)
-    return {"vegetables": vegetables}
+# Vegetableモデル用のPydanticスキーマ
+class VegetableCreate(BaseModel):
+    name: str
+    cultivation_start_date: datetime
+    memo: str
+    fiscal_year: str
 
-@app.post("/add_vegetable")
-def add_vegetable(diary: str , fiscal_year: str):
-    db = Vegetable(diary=diary, fiscal_year=fiscal_year)
-    session.add(db)
+class VegetableRead(BaseModel):
+    id: int
+    name: str
+    cultivation_start_date: datetime
+    memo: str
+    fiscal_year: str
+
+    class Config:
+        orm_mode = True
+
+# Dateモデル用のPydanticスキーマ
+class DateCreate(BaseModel):
+    diary_date: datetime
+    vegetable_id: int
+    photo: str
+    weather: str
+    memo: str
+
+class DateRead(BaseModel):
+    id: int
+    diary_date: datetime
+    vegetable_id: int
+    photo: str
+    weather: str
+    memo: str
+
+    class Config:
+        orm_mode = True
+
+# エンドポイント：日付の追加
+@app.post("/dates", response_model=DateRead)
+def add_date(date: DateCreate):
+    db_date = Date(
+        diary_date=date.diary_date,
+        vegetable_id=date.vegetable_id,
+        photo=date.photo,
+        weather=date.weather,
+        memo=date.memo
+    )
+    session.add(db_date)
     session.commit()
-    return {}
+    session.refresh(db_date)
+    return db_date
+
+# エンドポイント：全日付の取得
+@app.get("/dates", response_model=List[DateRead])
+def get_dates():
+    dates = session.query(Date).all()
+    return dates
+
+# エンドポイント：特定のIDの日付の取得
+@app.get("/dates/{date_id}", response_model=DateRead)
+def get_date(date_id: int):
+    date = session.query(Date).filter(Date.id == date_id).first()
+    if date is None:
+        raise HTTPException(status_code=404, detail="Date not found")
+    return date
+
+# エンドポイント：特定のIDの日付の削除
+@app.delete("/dates/{date_id}")
+def delete_date(date_id: int):
+    date = session.query(Date).filter(Date.id == date_id).first()
+    if date is None:
+        raise HTTPException(status_code=404, detail="Date not found")
+    session.delete(date)
+    session.commit()
+    return {"message": "Date deleted successfully"}
+
+
+
+# エンドポイント：野菜の追加
+@app.post("/vegetables", response_model=VegetableRead)
+def add_vegetable(vegetable: VegetableCreate):
+    db_vegetable = Vegetable(
+        name=vegetable.name,
+        cultivation_start_date=vegetable.cultivation_start_date,
+        memo=vegetable.memo,
+        fiscal_year=vegetable.fiscal_year
+    )
+    session.add(db_vegetable)
+    session.commit()
+    session.refresh(db_vegetable)
+    return db_vegetable
+
+# エンドポイント：野菜の取得
+@app.get("/vegetables", response_model=List[VegetableRead])
+def get_vegetables():
+    vegetables = session.query(Vegetable).all()
+    return vegetables
 
 @app.get("/weather")
 async def get_weather():
@@ -48,7 +138,7 @@ async def get_weather():
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
         data = response.json()
-        print(data)
+        # print(data)
 
         tomorrow = datetime.now(pytz.timezone('Asia/Tokyo')) + timedelta(days=1)
         tomorrow_date = tomorrow.strftime('%Y-%m-%d')
