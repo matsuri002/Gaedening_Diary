@@ -5,8 +5,11 @@ import httpx
 from datetime import datetime, timedelta
 import pytz
 
-from table import Vegetable
-from db import session
+from table import Vegetable, Date
+from db import session, engine
+from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from typing import List
 
 app = FastAPI()
 
@@ -28,12 +31,75 @@ async def root():
 
 ## この下にエンドポイント追加
 
-@app.get("/vegetables")
-async def show_vesitables():
+# @app.get("/vegetables")
+# async def show_vesitables():
+#     vegetables = session.query(Vegetable).all()
+#     for vegetable in vegetables:
+#         print ("id=",vegetable.id,"diary",vegetable.diary,"fiscal_year",vegetable.fiscal_year)
+#     return {"vegetables": vegetables}
+
+# Vegetableモデル用のPydanticスキーマ
+class VegetableCreate(BaseModel):
+    name: str
+    cultivation_start_date: datetime
+    memo: str
+    fiscal_year: str
+
+class VegetableRead(BaseModel):
+    id: int
+    name: str
+    cultivation_start_date: datetime
+    memo: str
+    fiscal_year: str
+
+    class Config:
+        orm_mode = True
+
+# Dateモデル用のPydanticスキーマ
+class DateCreate(BaseModel):
+    diary_date: datetime
+    vegetable_id: int
+    photo: str
+    weather: str
+    memo: str
+
+class DateRead(BaseModel):
+    id: int
+    diary_date: datetime
+    vegetable_id: int
+    photo: str
+    weather: str
+    memo: str
+
+    class Config:
+        orm_mode = True
+
+# エンドポイント：野菜の追加
+@app.post("/vegetables", response_model=VegetableRead)
+def add_vegetable(vegetable: VegetableCreate):
+    db_vegetable = Vegetable(
+        name=vegetable.name,
+        cultivation_start_date=vegetable.cultivation_start_date,
+        memo=vegetable.memo,
+        fiscal_year=vegetable.fiscal_year
+    )
+    session.add(db_vegetable)
+    session.commit()
+    session.refresh(db_vegetable)
+    return db_vegetable
+
+# エンドポイント：野菜の取得
+@app.get("/vegetables", response_model=List[VegetableRead])
+def get_vegetables():
     vegetables = session.query(Vegetable).all()
-    for vegetable in vegetables:
-        print ("id=",vegetable.id,"diary",vegetable.diary,"fiscal_year",vegetable.fiscal_year)
-    return {"vegetables": vegetables}
+    return vegetables
+
+# @app.get("/vegetables")
+# async def show_vesitables():
+#     vegetables = session.query(Vegetable).all()
+#     for vegetable in vegetables:
+#         print ("id=",vegetable.id,"name",vegetable.name,"cultivation_start_date",vegetable.cultivation_start_date,"memo",vegetable.memo,"fiscal_year",vegetable.fiscal_year)
+#     return {"vegetables": vegetables}
 
 @app.post("/add_vegetable")
 def add_vegetable(diary: str , fiscal_year: str):
@@ -48,7 +114,7 @@ async def get_weather():
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
         data = response.json()
-        print(data)
+        # print(data)
 
         tomorrow = datetime.now(pytz.timezone('Asia/Tokyo')) + timedelta(days=1)
         tomorrow_date = tomorrow.strftime('%Y-%m-%d')
