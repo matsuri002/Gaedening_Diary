@@ -78,6 +78,7 @@ def add_date(date: DateCreate):
     db_date = Date(
         diary_date=date.diary_date,
         vegetable_id=date.vegetable_id,
+        time=date.time,
         photo=date.photo,
         weather=date.weather,
         memo=date.memo
