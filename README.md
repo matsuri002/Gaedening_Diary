@@ -13,6 +13,7 @@ feature1,test1,test-branchはいらない
 `pip install --upgrade sqlalchemy`  
 `python.exe -m pip install --upgrade pip`  
 `pip install pytz`
+`pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib`
 
 
  
