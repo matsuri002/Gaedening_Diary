@@ -1,4 +1,4 @@
-// diary.jsx
+// // diary.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -13,6 +13,7 @@ const Diary = () => {
   const [vegetableId, setVegetableId] = useState(''); // vegetable_id用のstateを追加
   const [time, setTime] = useState(''); // time用のstateを追加
   const [message, setMessage] = useState(''); // メッセージ用のstateを追加
+  const [showForm, setShowForm] = useState(false); // フォームの表示/非表示を制御するstateを追加
 
   useEffect(() => {
     const fetchPhoto = async () => {
@@ -73,6 +74,7 @@ const Diary = () => {
       setPhoto(defaultPhoto);
       setMemo('');
       setImageUrl('');
+      setShowForm(false); // フォームを隠す
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setMessage('エラー: この日付と野菜IDの組み合わせはすでに存在します。'); // エラーメッセージを表示
@@ -80,6 +82,10 @@ const Diary = () => {
         setMessage('エラー: 日付の作成中にエラーが発生しました。'); // エラーメッセージを表示
       }
     }
+  };
+
+  const handleShowForm = () => {
+    setShowForm(true); // フォームを表示
   };
 
   return (
@@ -104,36 +110,41 @@ const Diary = () => {
         <div className="dairy-container">
           <Link to="/"><button className="diary-back-botton">戻る</button></Link>
           <div><label htmlFor="memo">メモ</label><br /></div>
-          <div><textarea id="memo" name="memo" rows="4" cols="50" value={memo} onChange={handleMemoChange}></textarea><br /><br /></div>
+          <div><textarea id="memo" name="memo" rows="4" cols="50" value={memo} onChange={handleMemoChange}></textarea><br /><br />
+          <Link to="/"><button className="diary-botton">完了</button></Link></div>
+
+          <button onClick={handleShowForm}>登録</button> {/* 登録ボタンを追加 */}
           
-          <div>
-            <label htmlFor="photoUrl">写真URL</label><br />
-            <input type="text" id="photoUrl" value={imageUrl} onChange={handleUrlChange} /><br /><br />
-          </div>
+          {showForm && ( /* showFormがtrueの場合にフォームを表示 */
+            <div className="dairy-container-wrapper">
+              <div className="dairy-container">
+                <label htmlFor="photoUrl">写真URL</label><br />
+                <input type="text" id="photoUrl" value={imageUrl} onChange={handleUrlChange} /><br /><br />
+              </div>
 
-          <div>
-             <label htmlFor="diaryDate">日付</label><br />
-             <input type="date" id="diaryDate" value={diaryDate} onChange={handleDiaryDateChange} /><br /><br />
-           </div>
+              <div>
+                <label htmlFor="diaryDate">日付</label><br />
+                <input type="date" id="diaryDate" value={diaryDate} onChange={handleDiaryDateChange} /><br /><br />
+              </div>
 
-           <div>
-             <label htmlFor="vegetableId">野菜ID</label><br />
-             <input type="number" id="vegetableId" value={vegetableId} onChange={handleVegetableIdChange} /><br /><br />
-           </div>
+              <div>
+                <label htmlFor="vegetableId">野菜ID</label><br />
+                <input type="number" id="vegetableId" value={vegetableId} onChange={handleVegetableIdChange} /><br /><br />
+              </div>
 
-           <div>
-             <label htmlFor="time">時間</label><br />
-             <input type="time" id="time" value={time} onChange={handleTimeChange} /><br /><br />
-           </div>
+              <div>
+                <label htmlFor="time">時間</label><br />
+                <input type="time" id="time" value={time} onChange={handleTimeChange} /><br /><br />
+              </div>
 
-           <button onClick={handleCreateDate}>日付を作成</button> {/* 日付を作成するボタンを追加 */}
+              <button onClick={handleCreateDate}>日付を作成</button> {/* 日付を作成するボタンを追加 */}
 
-           <p>{message}</p> {/* メッセージ表示 */}
-
-          <Link to="/"><button className="diary-botton">完了</button></Link>
+              <p>{message}</p> {/* メッセージ表示 */}
+            </div>
+          )}
         </div>
-       </div>
-     </div>
+      </div>
+    </div>
   );
 };
 
