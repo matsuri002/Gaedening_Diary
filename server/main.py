@@ -76,9 +76,13 @@ class PhotoUrl(BaseModel):
     vegetable_id: int
     photo_url: str
 
-# エンドポイント：日付の追加
 @app.post("/dates", response_model=DateRead)
 def add_date(date: DateCreate):
+    # 同じ日付のエントリが存在するかチェック
+    existing_date = session.query(Date).filter(Date.diary_date == date.diary_date, Date.vegetable_id == date.vegetable_id).first()
+    if existing_date is not None:
+        raise HTTPException(status_code=400, detail="An entry for this date already exists")
+
     db_date = Date(
         diary_date=date.diary_date,
         vegetable_id=date.vegetable_id,
@@ -124,6 +128,8 @@ def find_date(diary_date: str, vegetable_id: int):
         raise HTTPException(status_code=404, detail="Date not found")
 
     return date
+
+
 
 # エンドポイント：野菜の追加
 @app.post("/vegetables", response_model=VegetableRead)
