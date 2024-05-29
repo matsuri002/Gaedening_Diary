@@ -41,6 +41,8 @@ const Diary = () => {
         photo_url: imageUrl
       });
       setPhoto(response.data.photo);
+      // setMessage('完了しました'); 
+      setImageUrl('');       
     } catch (error) {
       console.error('Error uploading URL:', error);
     }
