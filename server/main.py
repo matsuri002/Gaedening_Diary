@@ -54,15 +54,16 @@ class VegetableRead(BaseModel):
 
 # Dateモデル用のPydanticスキーマ
 class DateCreate(BaseModel):
-    diary_date: datetime
+    diary_date: str
     vegetable_id: int
+    time: str
     photo: str
     weather: str
     memo: str
 
 class DateRead(BaseModel):
     id: int
-    diary_date: datetime
+    diary_date: str
     vegetable_id: int
     photo: str
     weather: str
@@ -77,6 +78,7 @@ def add_date(date: DateCreate):
     db_date = Date(
         diary_date=date.diary_date,
         vegetable_id=date.vegetable_id,
+        time=date.time,
         photo=date.photo,
         weather=date.weather,
         memo=date.memo
@@ -110,7 +112,14 @@ def delete_date(date_id: int):
     session.commit()
     return {"message": "Date deleted successfully"}
 
+# エンドポイント：特定の日付と野菜idのdateを取得
+@app.get("/dates/find/{diary_date}/{vegetable_id}")
+def find_date(diary_date: str, vegetable_id: int):
+    date = session.query(Date).filter(Date.diary_date == diary_date, Date.vegetable_id == vegetable_id).first()
+    if date is None:
+        raise HTTPException(status_code=404, detail="Date not found")
 
+    return date
 
 # エンドポイント：野菜の追加
 @app.post("/vegetables", response_model=VegetableRead)

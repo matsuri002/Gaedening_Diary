@@ -6,7 +6,8 @@ from db import Base, engine
 class Date(Base):
     __tablename__ = "date"
     id = Column(Integer, primary_key=True)
-    diary_date = Column(DateTime, nullable=False)
+    diary_date = Column(String(30), nullable=False)
+    time = Column(String(30), nullable=True)
     vegetable_id = Column(Integer, ForeignKey('vegetable.id'))
     photo = Column(String(255))  # Assuming photos are stored as file paths
     weather = Column(String(30))
@@ -20,7 +21,7 @@ class Vegetable(Base):
     __tablename__ = "vegetable"
     id = Column(Integer, primary_key=True)
     name = Column(String(30), nullable=False)
-    cultivation_start_date = Column(DateTime, nullable=False)
+    cultivation_start_date = Column(String(30), nullable=False)
     memo = Column(String(255))
     fiscal_year = Column(String(30), nullable=False)
 
