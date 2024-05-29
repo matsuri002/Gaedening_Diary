@@ -1,12 +1,13 @@
 // diary.jsx
 import React , { useState, useEffect } from 'react';
-import {  useParams,Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Diary = () => {
   const { id, date } = useParams();
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
     const fetchPhoto = async () => {
@@ -28,6 +29,22 @@ const Diary = () => {
 
   const defaultPhoto = "https://lh3.googleusercontent.com/pw/AP1GczNHVQgH7DKQuwjhJ7ItfNAneL2Dq33Kelc8QwQNmFEM8xcPxB-7gcWBt0tBgKhybqv9qWoO_wdTtokxEgOyG4sNkG1H_-D5CwPzclsEOP3u1KafNSPbQ1dluBBNNMoA7xXoeIJEh9AErcYM3CaKHL2Waw=w965-h543-s-no";
 
+  const handleUrlChange = (event) => {
+    setImageUrl(event.target.value);
+  };
+
+  const handleUpload = async () => {
+    try {
+      const response = await axios.post('http://localhost:8000/upload_url', {
+        diary_date: date,
+        vegetable_id: id,
+        photo_url: imageUrl
+      });
+      setPhoto(response.data.photo);
+    } catch (error) {
+      console.error('Error uploading URL:', error);
+    }
+  };
 
   return(
     <div id="today">
@@ -45,7 +62,6 @@ const Diary = () => {
             alt="写真" 
           />
         )}
-      {/* <img src="https://lh3.googleusercontent.com/pw/AP1GczNEmhAg8HfnF7NAFUZ86xSiO7aWLpN88Fa6SnRdSTlxPTxSPqUQ-4F31PRsRYUt3QYVBNJJQthf14mlsPHWyUJ02uGvfvFaSxrHLDwtJ4_7T1wHXMUJCLQJBZFbiSb9VXTW9AgAzEofrOQhIuESdh7y=w835-h627-s-no" className="ms-1 list-group-horizontal" width="758" height="340" alt="" />     */}
       <Link to="/"><button className="after-botton">＞</button></Link>
       <div id="memo-set">
         <div className="dairy-container">
@@ -53,11 +69,16 @@ const Diary = () => {
           <div><label htmlFor="memo">メモ</label><br /></div>
           <div><textarea id="memo" name="memo" rows="4" cols="50"></textarea><br /><br /></div>
           
-          
+          <div>
+            <label htmlFor="photoUrl">写真URL</label><br />
+            <input type="text" id="photoUrl" value={imageUrl} onChange={handleUrlChange} /><br /><br />
+            <button onClick={handleUpload}>アップロード</button>
+          </div>
+
           <Link to="/"><button className="diary-botton">完了</button></Link>
         </div>
-        </div>
-    </div>
+       </div>
+     </div>
   );
 };
 

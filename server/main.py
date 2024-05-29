@@ -1,6 +1,5 @@
 # main.py
 from fastapi import FastAPI,HTTPException
-
 from starlette.middleware.cors import CORSMiddleware
 import httpx
 
@@ -72,6 +71,11 @@ class DateRead(BaseModel):
     class Config:
         orm_mode = True
 
+class PhotoUrl(BaseModel):
+    diary_date: str
+    vegetable_id: int
+    photo_url: str
+
 # エンドポイント：日付の追加
 @app.post("/dates", response_model=DateRead)
 def add_date(date: DateCreate):
@@ -141,6 +145,19 @@ def get_vegetables():
     vegetables = session.query(Vegetable).all()
     return vegetables
 
+# エンドポイント：画像URLのアップロード
+@app.post("/upload_url")
+def upload_url(photo_url: PhotoUrl):
+    db_date = session.query(Date).filter(Date.diary_date == photo_url.diary_date, Date.vegetable_id == photo_url.vegetable_id).first()
+    if db_date is None:
+        raise HTTPException(status_code=404, detail="Date not found")
+
+    db_date.photo = photo_url.photo_url
+    session.commit()
+    session.refresh(db_date)
+    
+    return {"photo": db_date.photo}
+
 @app.get("/weather")
 async def get_weather():
     url = "http://api.openweathermap.org/data/2.5/forecast?q=Fukuoka,JP&appid=e23e150d4f46a3a9307fecc50e40d84b&lang=ja&units=metric"
@@ -173,5 +190,3 @@ async def get_weather():
                     weather_data['night']['pop'] = forecast['pop']
 
         return weather_data
-
-        
