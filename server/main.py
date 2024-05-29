@@ -56,7 +56,7 @@ class DateCreate(BaseModel):
     diary_date: str
     vegetable_id: int
     time: str
-    photo: str
+    photo_url: str
     weather: str
     memo: str
 
@@ -71,10 +71,6 @@ class DateRead(BaseModel):
     class Config:
         orm_mode = True
 
-class PhotoUrl(BaseModel):
-    diary_date: str
-    vegetable_id: int
-    photo_url: str
 
 @app.post("/dates", response_model=DateRead)
 def add_date(date: DateCreate):
@@ -87,7 +83,7 @@ def add_date(date: DateCreate):
         diary_date=date.diary_date,
         vegetable_id=date.vegetable_id,
         time=date.time,
-        photo=date.photo,
+        photo=date.photo_url,
         weather=date.weather,
         memo=date.memo
     )
@@ -150,19 +146,6 @@ def add_vegetable(vegetable: VegetableCreate):
 def get_vegetables():
     vegetables = session.query(Vegetable).all()
     return vegetables
-
-# エンドポイント：画像URLのアップロード
-@app.post("/upload_url")
-def upload_url(photo_url: PhotoUrl):
-    db_date = session.query(Date).filter(Date.diary_date == photo_url.diary_date, Date.vegetable_id == photo_url.vegetable_id).first()
-    if db_date is None:
-        raise HTTPException(status_code=404, detail="Date not found")
-
-    db_date.photo = photo_url.photo_url
-    session.commit()
-    session.refresh(db_date)
-    
-    return {"photo": db_date.photo}
 
 @app.get("/weather")
 async def get_weather():

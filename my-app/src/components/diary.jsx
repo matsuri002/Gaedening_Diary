@@ -1,5 +1,5 @@
 // diary.jsx
-import React , { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,7 +13,6 @@ const Diary = () => {
   const [vegetableId, setVegetableId] = useState(''); // vegetable_id用のstateを追加
   const [time, setTime] = useState(''); // time用のstateを追加
   const [message, setMessage] = useState(''); // メッセージ用のstateを追加
-
 
   useEffect(() => {
     const fetchPhoto = async () => {
@@ -55,21 +54,6 @@ const Diary = () => {
     setTime(event.target.value);
   };
 
-  const handleUpload = async () => {
-    try {
-      const response = await axios.post('http://localhost:8000/upload_url', {
-        diary_date: date,
-        vegetable_id: id,
-        photo_url: imageUrl
-      });
-      setPhoto(response.data.photo);
-      // setMessage('完了しました'); 
-      setImageUrl('');       
-    } catch (error) {
-      console.error('Error uploading URL:', error);
-    }
-  };
-
   const handleCreateDate = async () => {
     try {
       // 新しい日付を作成
@@ -77,7 +61,7 @@ const Diary = () => {
         diary_date: diaryDate,
         vegetable_id: vegetableId,
         time: time,
-        photo: photo || defaultPhoto, // URLがない場合はデフォルトのURLを使用
+        photo_url: imageUrl || defaultPhoto, // アップロードされたURLがない場合はデフォルトのURLを使用
         weather: '', // ここに天気情報を設定します
         memo: memo
       });
@@ -88,6 +72,7 @@ const Diary = () => {
       setTime('');
       setPhoto(defaultPhoto);
       setMemo('');
+      setImageUrl('');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setMessage('エラー: この日付と野菜IDの組み合わせはすでに存在します。'); // エラーメッセージを表示
@@ -97,33 +82,33 @@ const Diary = () => {
     }
   };
 
-  return(
+  return (
     <div id="today">
       <div className='todays'>
-      <h1>今日の記録</h1> </div>           
+        <h1>今日の記録</h1> 
+      </div>           
       <div id="result"></div>
       <Link to="/"><button className="before-botton">＜</button></Link>
       {loading ? (
-          <p>読み込み中...</p>
-        ) : (
-          <img 
-            src={photo || defaultPhoto}
-            width="758" 
-            height="340" 
-            alt="写真" 
-          />
-        )}
+        <p>読み込み中...</p>
+      ) : (
+        <img 
+          src={photo || defaultPhoto}
+          width="758" 
+          height="340" 
+          alt="写真" 
+        />
+      )}
       <Link to="/"><button className="after-botton">＞</button></Link>
       <div id="memo-set">
         <div className="dairy-container">
           <Link to="/"><button className="diary-back-botton">戻る</button></Link>
           <div><label htmlFor="memo">メモ</label><br /></div>
-          <div><textarea id="memo" name="memo" rows="4" cols="50"></textarea><br /><br /></div>
+          <div><textarea id="memo" name="memo" rows="4" cols="50" value={memo} onChange={handleMemoChange}></textarea><br /><br /></div>
           
           <div>
             <label htmlFor="photoUrl">写真URL</label><br />
             <input type="text" id="photoUrl" value={imageUrl} onChange={handleUrlChange} /><br /><br />
-            <button onClick={handleUpload}>アップロード</button>
           </div>
 
           <div>
