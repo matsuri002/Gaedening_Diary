@@ -1,4 +1,4 @@
-// // // diary.jsx
+// diary.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -104,7 +104,7 @@ const Diary = () => {
   return (
     <div id="today">
       <div className='todays'>
-        <h1>今日の記録</h1> 
+        <h1>{dayjs(date).format('YYYY-MM-DD')}の記録</h1> 
       </div>           
       <div id="result"></div>
       <button className="before-botton" onClick={handlePrevDate}>＜</button>
