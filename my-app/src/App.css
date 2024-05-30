@@ -134,7 +134,7 @@ body .form-botton {
 } */
 
 
-/* body .todays h1{
+ body .todays h1{
   font-size: 28px;
   margin: 1;
 }
@@ -155,6 +155,7 @@ body .before-botton{
 body .before-botton:hover{
   background-color: #f0f0f0;
 }
+
 /* ＞ボタン */
 body .after-botton{
   position: absolute;
