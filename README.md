@@ -13,6 +13,6 @@ feature1,test1,test-branchはいらない
 `pip install --upgrade sqlalchemy`  
 `python.exe -m pip install --upgrade pip`  
 `pip install pytz`
-
+`npm install dayjs`
 
  

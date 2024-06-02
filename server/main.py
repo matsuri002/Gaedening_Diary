@@ -1,6 +1,5 @@
 # main.py
 from fastapi import FastAPI,HTTPException
-
 from starlette.middleware.cors import CORSMiddleware
 import httpx
 
@@ -54,15 +53,16 @@ class VegetableRead(BaseModel):
 
 # Dateモデル用のPydanticスキーマ
 class DateCreate(BaseModel):
-    diary_date: datetime
+    diary_date: str
     vegetable_id: int
-    photo: str
+    time: str
+    photo_url: str
     weather: str
     memo: str
 
 class DateRead(BaseModel):
     id: int
-    diary_date: datetime
+    diary_date: str
     vegetable_id: int
     photo: str
     weather: str
@@ -71,13 +71,19 @@ class DateRead(BaseModel):
     class Config:
         orm_mode = True
 
-# エンドポイント：日付の追加
+
 @app.post("/dates", response_model=DateRead)
 def add_date(date: DateCreate):
+    # 同じ日付のエントリが存在するかチェック
+    existing_date = session.query(Date).filter(Date.diary_date == date.diary_date, Date.vegetable_id == date.vegetable_id).first()
+    if existing_date is not None:
+        raise HTTPException(status_code=400, detail="An entry for this date already exists")
+
     db_date = Date(
         diary_date=date.diary_date,
         vegetable_id=date.vegetable_id,
-        photo=date.photo,
+        time=date.time,
+        photo=date.photo_url,
         weather=date.weather,
         memo=date.memo
     )
@@ -109,6 +115,15 @@ def delete_date(date_id: int):
     session.delete(date)
     session.commit()
     return {"message": "Date deleted successfully"}
+
+# エンドポイント：特定の日付と野菜idのdateを取得
+@app.get("/dates/find/{diary_date}/{vegetable_id}")
+def find_date(diary_date: str, vegetable_id: int):
+    date = session.query(Date).filter(Date.diary_date == diary_date, Date.vegetable_id == vegetable_id).first()
+    if date is None:
+        raise HTTPException(status_code=404, detail="Date not found")
+
+    return date
 
 
 
@@ -164,5 +179,3 @@ async def get_weather():
                     weather_data['night']['pop'] = forecast['pop']
 
         return weather_data
-
-        
