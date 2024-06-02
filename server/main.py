@@ -105,7 +105,7 @@ class DateRead(BaseModel):
     class Config:
         orm_mode = True
 
-# エンドポイント：日付の追加
+
 @app.post("/dates", response_model=DateRead)
 def add_date(
     diary_date: str,

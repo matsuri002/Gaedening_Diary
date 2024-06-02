@@ -131,19 +131,10 @@ body .form-botton {
 
 #today img {
   margin: 0 auto;
-}
-
-/* #today button {
-  margin-top: 10px;
 } */
 
-/* #memo-set {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
 
-body .todays h1{
+ body .todays h1{
   font-size: 28px;
   margin: 1;
 }
@@ -164,6 +155,7 @@ body .before-botton{
 body .before-botton:hover{
   background-color: #f0f0f0;
 }
+
 /* ＞ボタン */
 body .after-botton{
   position: absolute;
@@ -182,8 +174,8 @@ body .after-botton:hover{
 }
 
 .dairy-container {
-  display: flex;
-  /* flex-direction: row; */
+  display: flex; 
+  flex-direction: row;
   justify-content: center;
 }
 /* 今日の記録の完了ボタン */
@@ -213,5 +205,96 @@ body .diary-botton:hover{
   background-color: #eaca8e;
 }
 
+.form-container {
+  margin-top: 2px;
+}
+
+.form-input-container {
+  margin-top: 10px; /* 登録ボタンとの間隔を追加 */
+  padding: 5px; /* 枠線と入力欄との間隔を狭くする */
+}
+
+.memo-set {
+  display: flex;
+  justify-content: center;
+}
+
+.memo-input-container {
+  height: 300px; /* メモフォームの縦幅を設定 */
+  /* 他のスタイル */
+}
+
+.form-input-container {
+  height: 60px; /* 投稿フォームの縦幅を設定 */
+  /* 他のスタイル */
+}
 
 
+.memo-form-container,
+.form-container {
+  width: 30%;
+  border: 1px solid hsl(0, 0%, 80%);
+  background-color: #979796;
+  border-radius: 51px;
+  padding: 10px;
+  margin: 0 auto; /* 上下に0の余白、左右に自動的に余白を追加 */
+}
+.memo-button,
+.form-button {
+  padding: 8px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(70, 67, 64);
+  cursor: pointer;
+}
+
+.memo-button:hover,
+.form-button:hover {
+  background-color: #eaca8e;
+}
+
+
+.memo-section {
+  margin-bottom: 0px;
+}
+
+.memo-input-container {
+  margin-top: 10px; /* メモボタンとの間隔を追加 */
+}
+
+
+.memo-label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+textarea {
+  width: calc(100% - 22px); 
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+}
+
+.form-botton {
+  margin-top: 10px;
+}
+
+.diary-back-botton {
+  position: absolute;
+  top: 530px;
+  left: 580px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8ee97;
+  color: rgb(234, 176, 82);
+  cursor: pointer;
+}
+
+.diary-back-botton:hover {
+  background-color: #eaca8e;
+}

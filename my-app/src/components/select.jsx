@@ -31,7 +31,11 @@ const Select = () => {
         <div className="button-container">
           {error && <p>{error}</p>}
           {vegetables.map((vegetable) => (
+<<<<<<< HEAD
              <Link key={vegetable.id} to={`/Diary/${vegetable.id}/${currentDate}`}>
+=======
+            <Link key={vegetable.id} to={`/Diary/${vegetable.id}/${currentDate}`}>
+>>>>>>> 93c9287c24ade4a0cbcdeafc844c2705926a4e75
               <button className="botton">{vegetable.name}</button>
             </Link>
           ))}
@@ -42,6 +46,15 @@ const Select = () => {
 };
 
 export default Select;
+// 今日の日付を取得するヘルパー関数
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 
 // 今日の日付を取得するヘルパー関数
 function getCurrentDate() {
