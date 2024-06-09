@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ## DBの作成
 1. Gaedening_Diary直下に.envファイルを作成する。内容は以下の写真のようにする  
-![alt text](image-2.png)
+![dock/DB_setting.png](dock/DB_setting.png)
 2. sudo service mysql start
 3. sudo mysql -u root -p
 4. CREATE DATABASE <DB名>;
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 cd Gaedening_Diary
 2. ディレクトリをmy-appに移動する  
 cd my-app
-3. FastAPIの起動  
+3. Reactの起動  
 npm start
 
 ## MySQLの起動
@@ -56,5 +56,5 @@ uvicorn main:app
 
 
 # ER図
-![alt text](image.png)
+![dock/ER.png](dock/ER.png)
  
