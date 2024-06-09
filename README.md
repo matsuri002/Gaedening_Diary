@@ -25,9 +25,9 @@ pip install -r requirements.txt
 ![alt text](image-2.png)
 2. sudo service mysql start
 3. sudo mysql -u root -p
-4. CREATE DATABASE <DB名>;
-5. CREATE USER '<ユーザー名>'@'localhost' IDENTIFIED BY '<password>';
-6. GRANT ALL PRIVILEGES ON test5.* TO 'ユーザー名'@'localhost';
+4. CREATE DATABASE ＜DB名＞ ;
+5. CREATE USER '＜ユーザー名＞'@'localhost' IDENTIFIED BY '＜password＞';
+6. GRANT ALL PRIVILEGES ON test5.* TO '＜ユーザー名＞'@'＜localhost＞';
 7. flush privileges;
 8. exit;
 
