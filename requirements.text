@@ -1,8 +1,7 @@
-install uvicorn   
-install fastapi  
-install python-dotenv  
-install pymysql   
-install sqlalchemy  
-install mysql-connector-python  
-install --upgrade sqlalchemy  
-install pytz
+uvicorn   
+fastapi  
+python-dotenv  
+pymysql   
+sqlalchemy  
+mysql-connector-python  
+pytz
