@@ -1,5 +1,15 @@
 # Gaedening_Diary
 
+# システム構成図
+<img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+<img src="https://img.shields.io/badge/-FastAPI-009688.svg?logo=fastapi&style=plastic">
+<img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
+
+![alt text](docs/system_configuration.png)
+
+# 画面遷移図
+<video controls src="docs/screen_transition.mp4" title="画面遷移図"></video>
+
 # 機能
 - 家庭菜園をしている人向けに、写真をアップロードし栽培日記を作る
 - 水やりの指標のため明日の天気を表示させる
@@ -22,7 +32,7 @@ pip install -r requirements.txt
 
 ## DBの作成
 1. Gaedening_Diary直下に.envファイルを作成する。内容は以下の写真のようにする  
-![alt text](image-2.png)
+![alt text](docs/db_setting.png)
 2. sudo service mysql start
 3. sudo mysql -u root -p
 4. CREATE DATABASE <DB名>;
@@ -56,5 +66,4 @@ uvicorn main:app
 
 
 # ER図
-![alt text](image.png)
- 
+![alt text](docs/ER.png)
