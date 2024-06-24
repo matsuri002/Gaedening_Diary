@@ -2,8 +2,7 @@
 
 # システム構成図
 <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"> <img src="https://img.shields.io/badge/-FastAPI-009688.svg?logo=fastapi&style=plastic"> <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
-
-![alt text](docs/system_configuration.png)
+<img src="docs/system_configuration.png" width="300">
 
 # 画面遷移図
 <video controls src="docs/screen_transition.mp4" title="画面遷移図"></video>
@@ -64,4 +63,4 @@ uvicorn main:app
 
 
 # ER図
-![alt text](docs/ER.png)
+<img src="docs/ER.png" width="300">
