@@ -64,3 +64,6 @@ uvicorn main:app
 
 # ER図
 <img src="docs/ER.png" width="400">
+
+# API仕様書
+<img src="docs/API.png" width="400">
