@@ -1,5 +1,3 @@
-
-https://github.com/matsuri002/Gaedening_Diary/assets/144910260/20e9316d-b8ae-4653-8e51-c5819edd4321
 # Gaedening_Diary
 
 # システム構成図
