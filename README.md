@@ -4,8 +4,8 @@
 <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"> <img src="https://img.shields.io/badge/-FastAPI-009688.svg?logo=fastapi&style=plastic"> <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">  
 <img src="docs/system_configuration.png" width="400">
 
-# 画面遷移図
-<video controls src="docs/screen_transition.mp4" title="画面遷移図"></video>
+# 動作イメージ
+<video controls src="docs/screen_transition.mp4" title="動作イメージ" width="400"></video>
 
 # 機能
 - 家庭菜園をしている人向けに、写真をアップロードし栽培日記を作る
