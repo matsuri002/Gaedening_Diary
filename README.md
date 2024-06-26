@@ -1,11 +1,19 @@
+
+https://github.com/matsuri002/Gaedening_Diary/assets/144910260/20e9316d-b8ae-4653-8e51-c5819edd4321
 # Gaedening_Diary
 
 # システム構成図
 <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"> <img src="https://img.shields.io/badge/-FastAPI-009688.svg?logo=fastapi&style=plastic"> <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">  
 <img src="docs/system_configuration.png" width="400">
 
+
+
+
+
 # 動作イメージ
-<video controls src="docs/screen_transition.mp4" title="動作イメージ" width="400"></video>
+https://github.com/matsuri002/Gaedening_Diary/assets/144910260/a51c0d9e-181c-4f7b-95a5-4ffca4bd6169
+
+
 
 # 機能
 - 家庭菜園をしている人向けに、写真をアップロードし栽培日記を作る
