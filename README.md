@@ -4,14 +4,8 @@
 <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"> <img src="https://img.shields.io/badge/-FastAPI-009688.svg?logo=fastapi&style=plastic"> <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">  
 <img src="docs/system_configuration.png" width="400">
 
-
-
-
-
 # 動作イメージ
 https://github.com/matsuri002/Gaedening_Diary/assets/144910260/a51c0d9e-181c-4f7b-95a5-4ffca4bd6169
-
-
 
 # 機能
 - 家庭菜園をしている人向けに、写真をアップロードし栽培日記を作る
@@ -34,15 +28,16 @@ cd Gaedening_Diary
 pip install -r requirements.txt
 
 ## DBの作成
-1. Gaedening_Diary直下に.envファイルを作成する。内容は以下の写真のようにする  
+1. template.envファイルを以下の写真のようにする  
 ![alt text](docs/db_setting.png)
-2. sudo service mysql start
-3. sudo mysql -u root -p
-4. CREATE DATABASE <DB名>;
-5. CREATE USER '<ユーザー名>'@'localhost' IDENTIFIED BY '<password>';
-6. GRANT ALL PRIVILEGES ON <DB名>* TO 'ユーザー名'@'localhost';
-7. flush privileges;
-8. exit;
+2. .gitignoreファイルにtemplate.envと記述する
+3. sudo service mysql start
+4. sudo mysql -u root -p
+5. CREATE DATABASE <DB名>;
+6. CREATE USER '<ユーザー名>'@'localhost' IDENTIFIED BY '<password>';
+7. GRANT ALL PRIVILEGES ON <DB名>* TO 'ユーザー名'@'localhost';
+8. flush privileges;
+9. exit;
 
 
 # ローカルで動かす手順  
