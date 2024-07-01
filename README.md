@@ -67,4 +67,5 @@ uvicorn main:app
 <img src="docs/ER.png" width="400">
 
 # API仕様書
-<img src="docs/API.png" width="400">
+以下参照
+https://matsuri002.github.io/Gaedening_Diary/
