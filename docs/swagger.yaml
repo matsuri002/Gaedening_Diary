@@ -10,3 +10,11 @@ paths:
       responses:
         '200':
           description: A successful response
+components:
+  schemas:
+    Sample:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
