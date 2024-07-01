@@ -3,7 +3,7 @@ from fastapi import FastAPI,HTTPException
 from starlette.middleware.cors import CORSMiddleware
 import httpx
 from fastapi.openapi.utils import get_openapi
-import json
+import yaml
 
 from datetime import datetime, timedelta
 import pytz
@@ -28,7 +28,7 @@ openapi_schema = get_openapi(
 )
 
 with open("docs/swagger.yaml", "w") as file:
-    json.dump(openapi_schema, file, indent=2)
+    yaml.dump(openapi_schema, file)
 
 API_KEY = "c126b997e6b39aa35d72f8d7f5350dc0"
 BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
