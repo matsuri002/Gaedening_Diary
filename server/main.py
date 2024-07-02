@@ -27,7 +27,7 @@ openapi_schema = get_openapi(
     routes=app.routes,
 )
 
-with open("docs/swagger.yaml", "w") as file:
+with open("swagger.yaml", "w") as file:
     yaml.dump(openapi_schema, file)
 
 API_KEY = "c126b997e6b39aa35d72f8d7f5350dc0"
