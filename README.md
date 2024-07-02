@@ -2,7 +2,7 @@
 
 # システム構成図
 <img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"> <img src="https://img.shields.io/badge/-FastAPI-009688.svg?logo=fastapi&style=plastic"> <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">  
-<img src="docs/system_configuration.png" width="400">
+<img src="png/system_configuration.png" width="400">
 
 # 動作イメージ
 https://github.com/matsuri002/Gaedening_Diary/assets/144910260/a51c0d9e-181c-4f7b-95a5-4ffca4bd6169
@@ -17,17 +17,17 @@ https://github.com/matsuri002/Gaedening_Diary/assets/144910260/a51c0d9e-181c-4f7
 # 機能
 | Topページ | 新規登録ページ |
 | ---- | ---- |
-| ![alt text](docs/top.png) |![alt text](docs/new.png) |
+| ![alt text](png/top.png) |![alt text](png/new.png) |
 | Topページは新規登録で作成した野菜の名前が表示されるようにした。 | 新規登録ページではシンプルな構成で、翌年も同じ種類の野菜を育てる可能性があるため年度も入力できるようになっている。 |  
 
 | 記録ページ | 天気 |
 | ---- | ---- |
-| ![alt text](docs/today.png)|![alt text](docs/weather.png) |
+| ![alt text](png/today.png)|![alt text](png/weather.png) |
 | 写真を登録すると「写真がありません」から登録した写真が表示されるようになる。緑のボタンを押せば前日・翌日とページが移動し記録を見ることができる。 | 福岡県の翌日の天気をOpenWeatherから取得し時間ごとに朝・昼・夜として表示している。これにより写真を記録する際に翌日の天気を知ることができ、水やりの指標となる。 
 
 | メモ | 登録 |
 | ---- | ---- |
-| ![alt text](docs/memo.png)|![alt text](docs/id.png)![alt text](docs/photo.png) |
+| ![alt text](png/memo.png)|![alt text](png/id.png)![alt text](png/photo.png) |
 | その日の記録を入力する。写真だけでは分からない状況を記録できるため、病気等になったときに振り返って原因考察ができる。 | Google DriveからURLを取得し「写真URL」に入力する。日付は写真を撮った日で、野菜IDはアドレスバーに表示されている数字を入力する（この写真では「1」） |
 
 # 今後の展望
@@ -81,7 +81,7 @@ uvicorn main:app
 
 
 # ER図
-<img src="docs/ER.png" width="400">
+<img src="png/ER.png" width="400">
 
 # API仕様書
 以下参照  

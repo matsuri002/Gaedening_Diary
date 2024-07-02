@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 ## DBの作成
 1. template.envファイルを以下の写真のようにする  
-![alt text](docs/db_setting.png)
+![alt text](../png/db_setting.png)
 2. .gitignoreファイルにtemplate.envと記述する
 3. sudo service mysql start
 4. sudo mysql -u root -p
