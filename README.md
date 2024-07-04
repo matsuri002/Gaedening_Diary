@@ -56,7 +56,6 @@ pip install -r requirements.txt
 8. flush privileges;
 9. exit;
 
-
 # ローカルで動かす手順  
 ＊ FastAPIとReactはそれぞれ別のターミナルで立ち上げる
 ## Reactの起動
@@ -78,7 +77,6 @@ cd Gaedening_Diary
 cd server
 3. サーバーの起動  
 uvicorn main:app
-
 
 # ER図
 <img src="png/ER.png" width="400">
