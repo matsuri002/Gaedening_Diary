@@ -63,7 +63,7 @@ pip install -r requirements.txt
 cd Gaedening_Diary
 2. ディレクトリをmy-appに移動する  
 cd my-app
-3. FastAPIの起動  
+3. Reactの起動  
 npm start
 
 ## MySQLの起動
