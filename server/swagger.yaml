@@ -1,5 +1,250 @@
+openapi: 3.0.0
 info:
-  title: FastAPI
-  version: 0.1.0
-openapi: 3.1.0
-paths: {}
+  title: FastAPI Sample API
+  description: API documentation for FastAPI application.
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Root Endpoint
+      responses:
+        '200':
+          description: Returns a welcome message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Hello World
+
+  /dates:
+    get:
+      summary: Get all dates
+      responses:
+        '200':
+          description: List of dates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DateRead'
+
+    post:
+      summary: Add a new date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateCreate'
+      responses:
+        '200':
+          description: Date added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DateRead'
+
+  /dates/{date_id}:
+    get:
+      summary: Get date by ID
+      parameters:
+        - name: date_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Date details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DateRead'
+        '404':
+          description: Date not found
+
+    delete:
+      summary: Delete date by ID
+      parameters:
+        - name: date_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Date deleted successfully
+        '404':
+          description: Date not found
+
+  /dates/find/{diary_date}/{vegetable_id}:
+    get:
+      summary: Find date by diary date and vegetable ID
+      parameters:
+        - name: diary_date
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: vegetable_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Date found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DateRead'
+        '404':
+          description: Date not found
+
+  /vegetables:
+    get:
+      summary: Get all vegetables
+      responses:
+        '200':
+          description: List of vegetables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VegetableRead'
+
+    post:
+      summary: Add a new vegetable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VegetableCreate'
+      responses:
+        '200':
+          description: Vegetable added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VegetableRead'
+
+  /weather:
+    get:
+      summary: Get weather forecast
+      responses:
+        '200':
+          description: Weather forecast for the next day
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  morning:
+                    $ref: '#/components/schemas/WeatherData'
+                  afternoon:
+                    $ref: '#/components/schemas/WeatherData'
+                  night:
+                    $ref: '#/components/schemas/WeatherData'
+
+components:
+  schemas:
+    VegetableCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Tomato"
+        cultivation_start_date:
+          type: string
+          format: date-time
+          example: "2023-06-25T00:00:00Z"
+        memo:
+          type: string
+          example: "Planted in June"
+        fiscal_year:
+          type: string
+          example: "2023"
+
+    VegetableRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Tomato"
+        cultivation_start_date:
+          type: string
+          format: date-time
+          example: "2023-06-25T00:00:00Z"
+        memo:
+          type: string
+          example: "Planted in June"
+        fiscal_year:
+          type: string
+          example: "2023"
+
+    DateCreate:
+      type: object
+      properties:
+        diary_date:
+          type: string
+          format: date
+          example: "2023-07-01"
+        vegetable_id:
+          type: integer
+          example: 1
+        time:
+          type: string
+          example: "10:00"
+        photo_url:
+          type: string
+          example: "http://example.com/photo.jpg"
+        weather:
+          type: string
+          example: "Sunny"
+        memo:
+          type: string
+          example: "Watered the plants"
+
+    DateRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        diary_date:
+          type: string
+          format: date
+          example: "2023-07-01"
+        vegetable_id:
+          type: integer
+          example: 1
+        photo:
+          type: string
+          example: "http://example.com/photo.jpg"
+        weather:
+          type: string
+          example: "Sunny"
+        memo:
+          type: string
+          example: "Watered the plants"
+
+    WeatherData:
+      type: object
+      properties:
+        weather:
+          type: string
+          example: "Cloudy"
+        pop:
+          type: number
+          format: float
+          example: 0.2
