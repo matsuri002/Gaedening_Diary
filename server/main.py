@@ -18,18 +18,6 @@ from db import session, engine
 
 app = FastAPI()
 
-from main import app
-
-openapi_schema = get_openapi(
-    title=app.title,
-    version=app.version,
-    description=app.description,
-    routes=app.routes,
-)
-
-with open("swagger.yaml", "w") as file:
-    yaml.dump(openapi_schema, file)
-
 API_KEY = "c126b997e6b39aa35d72f8d7f5350dc0"
 BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
 
