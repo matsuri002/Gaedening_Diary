@@ -83,4 +83,4 @@ uvicorn main:app
 
 # API仕様書
 以下参照  
-https://matsuri002.github.io/Gaedening_Diary/
+https://matsuri002.github.io/Gaedening_Diary/server/docs
